@@ -1,12 +1,18 @@
-MAKMAL MESIN RINGKAS — SAINS TAHUN 4 V2
+MAKMAL MESIN RINGKAS V4 — PEMBAIKAN GERAKAN
 
-- Simulator berasingan: tuas, takal, roda dan gandar, satah condong, baji dan skru.
-- Slider pelarasan untuk setiap simulator.
-- Tekan dan tahan butang uji atau kawasan daya/tarik/putar pada ilustrasi.
-- Kuiz 10 soalan, 5 markah setiap satu, jumlah 50.
-- Popup slip pencapaian: Gangsa 0–24, Perak 25–39, Emas 40–50.
-- Cetak / Simpan PDF pada slip.
-- Tema halaman berwarna bumi/hijau; label kapsul biru muda bertulisan putih dibuang.
+Perubahan utama:
+- Tuas: arah gerakan dibetulkan — tekan hujung daya ke bawah, beban di hujung satu lagi terangkat.
+- Beban berat / rintangan lebih tinggi memerlukan butang daya ditekan lebih lama.
+- Satah condong: beban meluncur ke atas ramp apabila daya ditekan dan ditahan.
+- Takal: beban naik semasa tali ditarik.
+- Baji: baji bergerak masuk ke belahan kayu.
+- Roda dan gandar: roda berpusing, tali melilit gandar dan mengangkat beban.
+- Skru / penutup botol: tekan dan tahan untuk mengunci; lepaskan daya untuk penutup berpusing dan terbuka.
+- Slider serta butang − / + dikekalkan.
 
-Cara guna: ekstrak ZIP dan buka index.html dalam Chrome, Edge, Safari atau Firefox. Untuk GitHub Pages, muat naik index.html ke repository dan aktifkan Settings > Pages.
-Nota: simulator ialah model kualitatif pembelajaran, bukan alat mengukur daya sebenar.
+Cara guna:
+1. Ekstrak ZIP.
+2. Gantikan index.html lama dalam repository GitHub Pages dengan index.html baharu ini.
+3. Refresh halaman. Jika masih versi lama, cuba buka pautan dalam tab peribadi atau tambah ?v=4 pada URL sementara untuk menguji cache.
+
+Nota: Animasi ialah model visual pembelajaran kualitatif, bukan alat pengukuran daya sebenar.
