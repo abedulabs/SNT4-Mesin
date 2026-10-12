@@ -22,3 +22,14 @@ VERSI 5 — PEMULIHAN VISUAL
 - Memulihkan dan mengekalkan kawasan ilustrasi SVG bagi setiap mesin.
 - Visual dipaparkan semula apabila slider berubah, mesin ditukar, dan butang daya ditekan/dilepaskan.
 - Butang Tetapkan semula memulakan animasi pada keadaan asal.
+
+
+VERSI 6 — PEMBETULAN GERAKAN DAN ILUSTRASI
+- Satah condong bergerak jauh lebih perlahan.
+- Roda dan gandar: beban dipaparkan di bawah roda dan ditarik ke atas oleh tali yang melilit gandar.
+- Tuas: arah putaran dibetulkan supaya daya ditekan ke bawah dan beban terangkat lebih tinggi.
+- Baji: ilustrasi kayu dibelah dengan dua bahagian dan baji berbentuk segi tiga yang masuk ke tengah.
+- Takal: dua roda takal ditunjukkan dalam mekanisme.
+- Skru: kepala skru, ulir lingkaran dan hujung tajam ditunjukkan masuk ke dalam kayu; putaran lebih perlahan.
+- Semua mesin menggunakan butang kawalan yang sama: TEKAN & TAHAN DAYA.
+- Animasi semua mesin diperlahankan untuk pemerhatian murid.
