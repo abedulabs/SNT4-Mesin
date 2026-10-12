@@ -1,10 +1,12 @@
-MAKMAL MESIN RINGKAS — SAINS TAHUN 4
+MAKMAL MESIN RINGKAS — SAINS TAHUN 4 V2
 
-Kandungan: index.html (Nota, Simulator tuas, penerokaan mesin ringkas, kuiz interaktif, dan rekod pemerhatian).
+- Simulator berasingan: tuas, takal, roda dan gandar, satah condong, baji dan skru.
+- Slider pelarasan untuk setiap simulator.
+- Tekan dan tahan butang uji atau kawasan daya/tarik/putar pada ilustrasi.
+- Kuiz 10 soalan, 5 markah setiap satu, jumlah 50.
+- Popup slip pencapaian: Gangsa 0–24, Perak 25–39, Emas 40–50.
+- Cetak / Simpan PDF pada slip.
+- Tema halaman berwarna bumi/hijau; label kapsul biru muda bertulisan putih dibuang.
 
-Cara guna:
-1. Ekstrak ZIP.
-2. Buka index.html dalam Chrome, Edge, Safari atau Firefox.
-3. Untuk GitHub Pages, muat naik index.html ke repository dan aktifkan Settings > Pages.
-
-Topik berdasarkan paparan RPH yang diberi: SP 10.1.1–10.1.3 (tuas) dan SP 10.2.1–10.2.4 (mesin ringkas dan mesin kompleks). Simulator tuas ialah model kualitatif untuk pemerhatian, bukan alat mengukur daya sebenar.
+Cara guna: ekstrak ZIP dan buka index.html dalam Chrome, Edge, Safari atau Firefox. Untuk GitHub Pages, muat naik index.html ke repository dan aktifkan Settings > Pages.
+Nota: simulator ialah model kualitatif pembelajaran, bukan alat mengukur daya sebenar.
