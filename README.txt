@@ -116,3 +116,9 @@ VERSI 15 — PENAMBAHBAIKAN BERDASARKAN MAKLUM BALAS
 3. Baji: rekahan kayu berbentuk V mengikut hujung runcing baji/kapak.
 4. Skru: botol plastik pandangan sisi dengan keratan rentas ulir. BUKA memutarkan penutup lawan arah jam dan mengangkatnya; KUNCI memutarkan ikut arah jam dan menurunkannya.
 Markah kekal 50: Kuiz 10, Simulator 12, Pemerhatian 28.
+
+
+VERSI 16 — PEMBETULAN VISUAL DAN INPUT
+- Baji: rekahan berbentuk V hanya pada bahagian atas kayu; bahagian bawah kayu kekal bersambung.
+- Skru: simulasi khusus penutup botol plastik, berputar dan terangkat ketika dibuka, berpusing turun ketika dikunci; ada ilustrasi keratan rentas ulir.
+- Semua kawalan slider kini mempunyai kotak nombor boleh ditaip. Nilai kotak dan slider disegerakkan, termasuk butang tambah/tolak.
