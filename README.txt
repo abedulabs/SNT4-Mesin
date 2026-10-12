@@ -87,3 +87,24 @@ VERSI 12 — SEMUA SIMULATOR PANDANGAN SISI
 - Baji: bucu tajam masuk ke keratan sisi kayu dan memisahkan dua bahagian.
 - Skru: skru berulir berpusing dan masuk ke dalam kayu.
 - Markah dikekalkan: kuiz 10, simulator 12, pemerhatian 28, jumlah 50.
+
+
+VERSI 13 — PEMBAIKAN SIMULATOR BAJI
+- Visual baji dipermudahkan: blok kayu dengan belahan tengah dan baji segi tiga tajam.
+- Pandangan sisi/keratan rentas.
+- Menekan dan menahan butang daya menolak baji semakin dalam; dua sisi kayu terbuka sedikit.
+- Kekalkan slider Beban (kg), slider kedalaman dan butang kawalan yang sama.
+
+
+VERSI 14 — REKA SEMULA SEMUA SIMULATOR
+- Semua enam mesin menggunakan pandangan sisi yang mudah difahami.
+- Tuas: jongkang-jongket dengan dua budak; satu hujung turun dan hujung bertentangan naik.
+- Baji: kapak menghayun ke bawah dan membelah kayu.
+- Roda dan gandar: reel pancing berpusing, menggulung tali dan menarik ikan naik.
+- Takal: kren menarik tali dan mengangkat bongkah.
+- Satah condong: kereta bergerak menaiki cerun.
+- Skru: penutup botol berpusing turun pada ulir untuk mengunci.
+- Semua mesin kini mempunyai slider seragam: Beban (kg) dan Daya dikenakan (unit), dengan butang −/+.
+- Butang TEKAN & TAHAN DAYA seragam. Daya lebih tinggi meningkatkan kelajuan simulasi; beban lebih tinggi memperlahankannya.
+- Lepaskan butang untuk menghentikan gerakan pada kedudukan semasa; Tetapkan semula untuk mengulang.
+- Markah dikekalkan: kuiz 10, simulator 12, pemerhatian 28, jumlah 50.
