@@ -74,3 +74,16 @@ VERSI 11 — PEMBAHAGIAN MARKAH DAN SIMULATOR
 - Simulator skru: bolt berputar dan nat bergerak sepanjang ulir untuk mengetatkan sambungan.
 - Simulator takal: tali melalui takal tetap dan takal bergerak; beban naik apabila tali ditarik.
 - Simulator baji: pandangan sisi keratan rentas; bucu tajam masuk ke kayu dan menolak bahagian kayu terpisah.
+
+
+VERSI 12 — SEMUA SIMULATOR PANDANGAN SISI
+- Semua enam simulator dibina semula dengan ilustrasi SVG pandangan sisi berdasarkan poster rujukan.
+- Setiap mesin mempunyai butang seragam TEKAN & TAHAN DAYA dan gerakan berubah mengikut tempoh tekanan.
+- Beban ditunjukkan dalam unit kg melalui slider Beban (kg), dengan pelarasan butang − / +.
+- Tuas: daya ke bawah, beban naik.
+- Takal: tali ditarik ke bawah melalui takal tetap untuk mengangkat beban.
+- Roda dan gandar: roda berpusing dan tali pada gandar mengangkat beban.
+- Satah condong: beban meluncur menaiki ramp.
+- Baji: bucu tajam masuk ke keratan sisi kayu dan memisahkan dua bahagian.
+- Skru: skru berulir berpusing dan masuk ke dalam kayu.
+- Markah dikekalkan: kuiz 10, simulator 12, pemerhatian 28, jumlah 50.
