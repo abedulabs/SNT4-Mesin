@@ -16,3 +16,9 @@ Cara guna:
 3. Refresh halaman. Jika masih versi lama, cuba buka pautan dalam tab peribadi atau tambah ?v=4 pada URL sementara untuk menguji cache.
 
 Nota: Animasi ialah model visual pembelajaran kualitatif, bukan alat pengukuran daya sebenar.
+
+
+VERSI 5 — PEMULIHAN VISUAL
+- Memulihkan dan mengekalkan kawasan ilustrasi SVG bagi setiap mesin.
+- Visual dipaparkan semula apabila slider berubah, mesin ditukar, dan butang daya ditekan/dilepaskan.
+- Butang Tetapkan semula memulakan animasi pada keadaan asal.
