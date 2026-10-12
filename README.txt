@@ -1,14 +1,26 @@
-SIMULATOR MESIN RINGKAS — SAINS TAHUN 4
-Versi ringkas baharu untuk GitHub Pages.
+MAKMAL MESIN RINGKAS — SAINS TAHUN 4
+Pakej baharu GitHub Pages.
 
-Kandungan:
-1. Tuas — jongkang-jongket dan fulkrum boleh dilaraskan.
-2. Takal — tarik tali ke bawah untuk mengangkat beban.
-3. Roda dan gandar — putar pemegang untuk menggulung tali dan menaikkan batu ladung.
-4. Baji — ketuk baji untuk menghasilkan rekahan V di bahagian atas kayu.
-5. Satah condong — tolak kereta menaiki cerun.
-6. Skru — buka dan kunci penutup botol berulir.
+Pemarkahan:
+- Simulator: 6 mesin × 2 markah = 12
+- Kuiz objektif: 10 soalan × 1 markah = 10
+- Soalan saintifik: 28 markah
+Jumlah keseluruhan: 50 markah
 
-Semua slider mempunyai kotak nilai yang boleh ditaip dan diselaraskan dengan slider serta butang tambah/tolak.
-Kawalan gerakan menggunakan tekan dan tahan; lepaskan untuk menghentikan gerakan. Bagi skru gunakan BUKA atau KUNCI.
-Untuk GitHub Pages: ekstrak ZIP dan upload index.html serta README.txt ke root repository.
+Kandungan simulator:
+1. Tuas — jongkang-jongket, fulkrum, jarak daya, daya dan beban.
+2. Takal — tarik tali untuk mengangkat bongkah.
+3. Roda dan gandar — pemegang memutar gandar, tali menggulung dan beban naik.
+4. Baji — kapak/baji membelah kayu.
+5. Satah condong — kereta menaiki cerun.
+6. Skru — penutup botol berulir, buka dan kunci.
+
+Semua kawalan nilai ada slider, kotak angka yang boleh ditaip dan butang tambah/tolak.
+Tekan dan tahan butang daya untuk gerakan; lepaskan untuk berhenti.
+Kuiz disemak automatik. Soalan saintifik memberi anggaran markah kata kunci sahaja; guru perlu menyemak jawapan sebenar.
+Slip pencapaian boleh dipaparkan untuk tangkap layar atau dicetak/disimpan sebagai PDF.
+
+UPLOAD:
+1. Ekstrak ZIP.
+2. Upload index.html ke root repository GitHub Pages dan gantikan versi lama.
+3. Commit changes, kemudian buka semula laman.
