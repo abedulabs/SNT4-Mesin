@@ -64,3 +64,13 @@ VERSI 10 — PEMBAHAGIAN MARKAH 50
 - Simulator: setiap mesin yang diuji dengan menekan butang daya menyumbang 1/6 daripada 32 markah; skor dibundarkan kepada markah terdekat.
 - Jumlah keseluruhan: 50 markah.
 - Slip pencapaian memaparkan pecahan markah dan jumlah /50.
+
+
+VERSI 11 — PEMBAHAGIAN MARKAH DAN SIMULATOR
+- Kuiz: 10 soalan × 1 markah = 10 markah.
+- Simulator: 6 mesin; setiap simulator yang gerakannya selesai memberikan 2 markah = 12 markah.
+- Pemerhatian: 4 ruangan (Ujian 1, Ujian 2, Ujian 3, Kesimpulan); setiap ruangan yang diisi memberikan 7 markah = 28 markah.
+- Jumlah keseluruhan = 50 markah.
+- Simulator skru: bolt berputar dan nat bergerak sepanjang ulir untuk mengetatkan sambungan.
+- Simulator takal: tali melalui takal tetap dan takal bergerak; beban naik apabila tali ditarik.
+- Simulator baji: pandangan sisi keratan rentas; bucu tajam masuk ke kayu dan menolak bahagian kayu terpisah.
