@@ -44,30 +44,37 @@ footer{text-align:center;color:#53645e;padding:20px;font-size:.9rem}
 <section class="page" id="rekod"><div class="card"><h2>Rekod pemerhatian (28 markah)</h2><p>Isi keempat-empat ruangan. Setiap ruangan lengkap mendapat 7 markah.</p><div class="grid"><label>Nama murid<br><input id="nama" type="text" placeholder="Nama murid" style="width:100%"></label><label>Kelas<br><input id="kelas" type="text" placeholder="Contoh: 4 Bestari" style="width:100%"></label></div>
 <p>Ujian 1 — Apakah perubahan apabila slider dilaraskan?</p><textarea id="o1" rows="2" style="width:100%"></textarea><p>Ujian 2 — Apakah berlaku apabila beban / rintangan ditambah?</p><textarea id="o2" rows="2" style="width:100%"></textarea><p>Ujian 3 — Apakah fungsi mesin yang diuji?</p><textarea id="o3" rows="2" style="width:100%"></textarea><p>Kesimpulan</p><textarea id="conclusion" rows="3" style="width:100%" placeholder="Saya mendapati bahawa..."></textarea><p><button class="primary" id="report">Jana ringkasan</button> <button class="secondary" id="copy">Salin ringkasan</button></p><div class="note" id="output">Ringkasan akan dipaparkan di sini.</div></div></section>
 <section class="page" id="pencapaian"><div class="card"><h2>Slip pencapaian</h2><div class="score" id="summary">Kuiz 0/10 • Pemerhatian 0/28 • Simulator 0/12 • Jumlah 0/50</div><button class="primary" id="openSlip">Buka slip pencapaian</button></div></section>
-<section class="page" id="panduan"><div class="card"><h2>Panduan murid</h2><ol><li>Pilih salah satu daripada enam mesin.</li><li>Laraskan slider menggunakan butang − / + atau seret slider.</li><li>Tekan dan tahan butang tindakan untuk melihat pergerakan. Lepaskan untuk berhenti.</li><li>Bandingkan kesan tetapan kecil dan besar.</li><li>Jawab kuiz dan buka slip pencapaian.</li></ol><p>Gangsa: 0–24 • Perak: 25–39 • Emas: 40–50.</p></div></section>
+<section class="page" id="panduan"><div class="card"><h2>Panduan murid</h2><ol><li>Pilih salah satu daripada enam mesin.</li><li>Laraskan slider menggunakan butang − / + atau seret slider.</li><li>Tekan dan tahan butang DAYA untuk melihat pergerakan. Bagi skru, pilih BUKA (lawan jam) atau KUNCI (ikut jam). Lepaskan untuk berhenti.</li><li>Bandingkan kesan tetapan kecil dan besar.</li><li>Jawab kuiz dan buka slip pencapaian.</li></ol><p>Gangsa: 0–24 • Perak: 25–39 • Emas: 40–50.</p></div></section>
 </main>
 <dialog id="slipDialog"><div class="slip"><div class="medal" id="medalIcon">🏅</div><h2>SLIP PENCAPAIAN</h2><small>MAKMAL MESIN RINGKAS • SAINS TAHUN 4</small><p id="slipName">Nama murid: __________</p><p id="slipClass">Kelas: __________</p><div class="slipscore" id="slipScore">— / 50</div><p id="slipBreakdown">Kuiz: —/10 • Pemerhatian: —/28 • Simulator: —/12</p><h3 id="medalTitle">Teruskan usaha!</h3><p id="slipMessage"></p><small id="slipDate"></small></div><div class="actions"><button class="primary" id="printSlip">Cetak / Simpan PDF</button><button class="secondary" id="closeSlip">Tutup</button></div></dialog>
 <footer>Makmal pembelajaran interaktif • Sains Tahun 4</footer>
 <script>
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===b.dataset.page));window.scrollTo({top:0,behavior:'smooth'})});
 const machines={
- tuas:{name:'Tuas — Jongkang-jongket',desc:'Tekan dan tahan DAYA di sebelah kanan. Jongkang-jongket turun di sebelah daya dan budak di hujung bertentangan naik. Beban mewakili berat budak.',controls:[['load','Beban (kg)',10,100,40,10],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan DAYA',unit:{load:' kg',force:' unit'}},
+ tuas:{name:'Tuas — Jongkang-jongket',desc:'Laraskan jarak fulkrum, daya dan beban. Tekan dan tahan DAYA di sebelah kanan untuk menurunkan hujung daya dan menaikkan hujung beban.',controls:[['ful','Jarak fulkrum (cm)',200,400,300,10],['load','Beban (kg)',10,100,40,10],['effort','Daya dikenakan (N)',10,100,50,10]],action:'Tekan dan tahan DAYA',unit:{ful:' cm',load:' kg',effort:' N'}},
  takal:{name:'Takal — Kren mengangkat bongkah',desc:'Tekan dan tahan DAYA untuk menarik tali kren. Bongkah di hujung tali naik; beban lebih berat mengambil masa lebih lama.',controls:[['load','Beban (kg)',10,100,40,10],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan DAYA',unit:{load:' kg',force:' unit'}},
- roda:{name:'Roda dan gandar — Reel pancing',desc:'Tekan dan tahan DAYA untuk memutarkan pemegang reel. Tali digulung pada gandar dan ikan ditarik naik ke permukaan.',controls:[['load','Beban (kg)',10,100,20,10],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan DAYA',unit:{load:' kg',force:' unit'}},
+ roda:{name:'Roda dan gandar — Penggulung tali pancing',desc:'Pandangan hadapan penggulung tali. Tekan dan tahan DAYA untuk memutarkan pemegang; gandar menggulung tali dan menarik batu ladung ke atas.',controls:[['load','Beban batu ladung (kg)',1,20,5,1],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan DAYA',unit:{load:' kg',force:' unit'}},
  satah:{name:'Satah condong — Kereta menaiki cerun',desc:'Tekan dan tahan DAYA untuk menolak kereta menaiki cerun. Laraskan beban dan daya untuk membandingkan pergerakan.',controls:[['load','Beban (kg)',10,100,30,10],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan DAYA',unit:{load:' kg',force:' unit'}},
  baji:{name:'Baji — Kapak membelah kayu',desc:'Tekan dan tahan DAYA untuk menghayun kapak ke bawah. Bucu tajam kapak masuk ke dalam kayu dan membelahnya.',controls:[['load','Beban (kg)',10,100,30,10],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan DAYA',unit:{load:' kg',force:' unit'}},
- skru:{name:'Skru — Penutup botol mengunci',desc:'Tekan dan tahan DAYA untuk memutarkan penutup botol mengikut arah jam. Penutup turun sepanjang ulir dan mengunci botol.',controls:[['load','Beban (kg)',10,100,20,10],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan DAYA',unit:{load:' kg',force:' unit'}}
+ skru:{name:'Skru — Penutup botol plastik',desc:'Tekan dan tahan BUKA untuk memutarkan penutup lawan arah jam sehingga terangkat. Tekan dan tahan KUNCI untuk memutarkan penutup mengikut arah jam sehingga ulir mencengkam dan menutup botol.',controls:[['load','Beban (kg)',10,100,20,10],['force','Daya dikenakan',1,10,5,1]],action:'Tekan dan tahan BUKA / KUNCI',unit:{load:' kg',force:' unit'}}
 };
-let kind='tuas',vals={},holdTimer=null,active=false,finalScore=null,screwLocked=false,progress=0;
+let kind='tuas',vals={},holdTimer=null,active=false,finalScore=null,screwLocked=false,progress=0,screwDirection=1;
 const completedMachines=new Set();
 const choices=document.getElementById('machineChoices');
 Object.keys(machines).forEach(k=>{const b=document.createElement('button');b.className='choice'+(k==='tuas'?' active':'');b.textContent=machines[k].name;b.dataset.k=k;b.onclick=()=>selectMachine(k);choices.append(b)});
 function selectMachine(k){stopHold();progress=0;kind=k;document.querySelectorAll('.choice').forEach(b=>b.classList.toggle('active',b.dataset.k===k));renderSim()}
 function controlMarkup(c){let suffix=machines[kind].unit[c[0]]||'';return `<div class="controls"><label for="s_${c[0]}">${c[1]}</label><div class="range-wrap"><button class="nudge" data-key="${c[0]}" data-delta="-${c[5]}" aria-label="Kurangkan ${c[1]}">−</button><input id="s_${c[0]}" type="range" min="${c[2]}" max="${c[3]}" step="${c[5]}" value="${c[4]}"><button class="nudge" data-key="${c[0]}" data-delta="${c[5]}" aria-label="Tambah ${c[1]}">+</button><span class="readout" id="v_${c[0]}">${c[4]}${suffix}</span></div></div>`}
-function renderSim(){stopHold();progress=0;screwLocked=false;const m=machines[kind];vals={};m.controls.forEach(c=>vals[c[0]]=c[4]);document.getElementById('simContent').innerHTML=`<h2>${m.name}</h2><p>${m.desc}</p><div class="scene" id="scene">${drawScene()}</div>${m.controls.map(controlMarkup).join('')}<div class="controls"><button class="primary" id="holdButton">👆 TEKAN & TAHAN DAYA</button><button class="secondary" id="resetMachine">Tetapkan semula</button></div><div class="status" id="simStatus">Sedia untuk diuji.</div><div class="note" id="simObservation">Cuba ubah tetapan dahulu, kemudian tekan dan tahan untuk melihat gerakan.</div>`;
+function renderSim(){stopHold();progress=0;screwLocked=false;const m=machines[kind];vals={};m.controls.forEach(c=>vals[c[0]]=c[4]);document.getElementById('simContent').innerHTML=`<h2>${m.name}</h2><p>${m.desc}</p><div class="scene" id="scene">${drawScene()}</div>${m.controls.map(controlMarkup).join('')}<div class="controls">${kind==='skru'?'<button class="primary" id="openButton">↺ TEKAN & TAHAN BUKA (LAWAN JAM)</button><button class="primary" id="closeButton">↻ TEKAN & TAHAN KUNCI (IKUT JAM)</button>':'<button class="primary" id="holdButton">👆 TEKAN & TAHAN DAYA</button>'}<button class="secondary" id="resetMachine">Tetapkan semula</button></div><div class="status" id="simStatus">Sedia untuk diuji.</div><div class="note" id="simObservation">Cuba ubah tetapan dahulu, kemudian tekan dan tahan untuk melihat gerakan.</div>`;
 m.controls.forEach(c=>{const input=document.getElementById('s_'+c[0]);input.addEventListener('input',()=>{vals[c[0]]=+input.value;updateReadout(c);drawUpdate();document.getElementById('simStatus').textContent='Tetapan dikemas kini.'})});
 document.querySelectorAll('.nudge').forEach(b=>b.onclick=()=>{const c=m.controls.find(x=>x[0]===b.dataset.key),input=document.getElementById('s_'+c[0]);input.value=Math.max(+input.min,Math.min(+input.max,+input.value+(+b.dataset.delta)));input.dispatchEvent(new Event('input'))});
-const scene=document.getElementById('scene'),hold=document.getElementById('holdButton');hold.addEventListener('pointerdown',startHold);scene.addEventListener('pointerdown',e=>{if(e.target.closest('[data-effort]'))startHold(e)});['pointerup','pointerleave','pointercancel','pointerout'].forEach(ev=>{hold.addEventListener(ev,stopHold);scene.addEventListener(ev,stopHold)});document.getElementById('resetMachine').onclick=renderSim}
+const scene=document.getElementById('scene');
+ const hold=document.getElementById('holdButton'),open=document.getElementById('openButton'),close=document.getElementById('closeButton');
+ if(hold)hold.addEventListener('pointerdown',e=>startHold(e,1));
+ if(open)open.addEventListener('pointerdown',e=>startHold(e,1));
+ if(close)close.addEventListener('pointerdown',e=>startHold(e,-1));
+ scene.addEventListener('pointerdown',e=>{if(e.target.closest('[data-effort]'))startHold(e,1)});
+ ['pointerup','pointerleave','pointercancel','pointerout'].forEach(ev=>{if(hold)hold.addEventListener(ev,stopHold);if(open)open.addEventListener(ev,stopHold);if(close)close.addEventListener(ev,stopHold);scene.addEventListener(ev,stopHold)});
+ document.getElementById('resetMachine').onclick=renderSim}
 function txt(x,y,s,fill='#20313d',size=13,weight='normal',anchor='middle'){return `<text x="${x}" y="${y}" fill="${fill}" font-size="${size}" font-weight="${weight}" text-anchor="${anchor}">${s}</text>`}
 function drawScene(){
  const p=Math.max(0,Math.min(100,Number(progress)||0));
@@ -76,10 +83,10 @@ function drawScene(){
  const force=Number(v.force||5);
  let s='<svg viewBox="0 0 600 280" role="img" aria-label="Simulasi mesin ringkas pandangan sisi"><rect x="8" y="8" width="584" height="264" rx="12" fill="#fffdf5" stroke="#d1c7b1" stroke-width="2"/>';
  if(kind==='tuas'){
-   const ang=(p/100)*18, cx=300, cy=158;
+   const ful=Number(v.ful||300), ang=(p/100)*Math.max(4,Number(v.effort||50)/5), cx=ful, cy=158;
    const leftX=125, rightX=490;
    s+=`<line x1="45" y1="225" x2="555" y2="225" stroke="#9aaf9e" stroke-width="4"/>
-   <polygon points="270,220 330,220 300,${cy+5}" fill="#d6a936" stroke="#8b681d" stroke-width="3"/>
+   <polygon points="${ful-30},220 ${ful+30},220 ${ful},${cy+5}" fill="#d6a936" stroke="#8b681d" stroke-width="3"/>
    <g transform="rotate(${ang} ${cx} ${cy})">
     <rect x="65" y="${cy-7}" width="470" height="14" rx="5" fill="#b98b50" stroke="#805c31" stroke-width="3"/>
     <circle cx="${leftX}" cy="${cy-28}" r="17" fill="#f0c4a0" stroke="#805c31" stroke-width="2"/>
@@ -90,7 +97,7 @@ function drawScene(){
     <rect x="${rightX-24}" y="${cy-56}" width="48" height="16" rx="4" fill="#e1a34c"/><text x="${rightX}" y="${cy-44}" fill="#30251a" font-size="10" text-anchor="middle">${load}kg</text>
    </g>
    <line data-effort="1" x1="490" y1="90" x2="490" y2="118" stroke="#d95c46" stroke-width="6"/><polygon points="480,111 500,111 490,128" fill="#d95c46"/>
-   ${txt(490,78,'DAYA ↓','#a33b2b',13,'bold')}${txt(300,253,'Dua budak • fulkrum di tengah','#53675f',12)}
+   ${txt(490,78,'DAYA ↓','#a33b2b',13,'bold')}${txt(ful,253,`Fulkrum ${ful-125} cm dari beban • ${490-ful} cm dari daya`,'#53675f',11)}
    `;
  }
  if(kind==='takal'){
@@ -107,18 +114,17 @@ function drawScene(){
    `;
  }
  if(kind==='roda'){
-   const rot=p*5.4, fishY=180-p*0.85;
+   const rot=p*5.4, sinkerY=205-p*0.9;
    s+=`<line x1="65" y1="224" x2="535" y2="224" stroke="#9aaf9e" stroke-width="4"/>
-   <path d="M80 215 Q150 200 220 215 T360 215 T520 215" fill="none" stroke="#78b9c7" stroke-width="4"/>
-   <circle cx="210" cy="128" r="57" fill="#f0d64f" stroke="#315fa8" stroke-width="7"/>
-   <circle cx="210" cy="128" r="17" fill="#d95c46" stroke="#9d3d2f" stroke-width="4"/>
-   <g transform="rotate(${rot} 210 128)" stroke="#315fa8" stroke-width="5"><line x1="158" y1="128" x2="262" y2="128"/><line x1="210" y1="76" x2="210" y2="180"/></g>
-   <path d="M210 111 Q275 100 310 128 T360 ${fishY}" fill="none" stroke="#b98b50" stroke-width="4"/>
-   <line x1="360" y1="${fishY}" x2="360" y2="${fishY+18}" stroke="#b98b50" stroke-width="3"/>
-   <path d="M360 ${fishY+16} q-20 -15 -30 0 q10 20 30 0 q18 -18 30 0 q-12 19 -30 0" fill="#6aa9c9" stroke="#315f83" stroke-width="2"/>
-   <circle cx="354" cy="${fishY+14}" r="2" fill="#20313d"/>
-   <path data-effort="1" d="M170 70 A52 52 0 0 1 251 84" fill="none" stroke="#d95c46" stroke-width="6"/><polygon points="240,72 260,84 239,94" fill="#d95c46"/>
-   ${txt(365,70,'DAYA: PUTAR','#a33b2b',12,'bold')}${txt(210,210,'REEL PANCING','#53675f',12,'bold')}${txt(410,253,'Tali menggulung • ikan naik','#53675f',12)}
+   <circle cx="235" cy="125" r="65" fill="#f0d64f" stroke="#315fa8" stroke-width="8"/>
+   <circle cx="235" cy="125" r="20" fill="#d95c46" stroke="#9d3d2f" stroke-width="4"/>
+   <g transform="rotate(${rot} 235 125)" stroke="#315fa8" stroke-width="6"><line x1="177" y1="125" x2="293" y2="125"/><line x1="235" y1="67" x2="235" y2="183"/></g>
+   <g transform="rotate(${rot} 235 125)"><line x1="235" y1="125" x2="285" y2="160" stroke="#d95c46" stroke-width="7"/><circle cx="285" cy="160" r="10" fill="#d95c46" stroke="#963c2d" stroke-width="3"/><rect x="280" y="151" width="25" height="18" rx="7" fill="#6c7780" stroke="#37434b" stroke-width="2"/></g>
+   <path d="M255 125 Q330 125 355 157 L355 ${sinkerY-12}" fill="none" stroke="#b98b50" stroke-width="4"/>
+   <path d="M345 ${sinkerY-12} L365 ${sinkerY-12} L360 ${sinkerY+8} Q355 ${sinkerY+18} 350 ${sinkerY+8} Z" fill="#6d7780" stroke="#37434b" stroke-width="2"/>
+   <path d="M355 ${sinkerY-12} V${sinkerY-23}" stroke="#b98b50" stroke-width="3"/>
+   <path data-effort="1" d="M184 57 A65 65 0 0 1 280 69" fill="none" stroke="#d95c46" stroke-width="6"/><polygon points="270,56 289,69 268,79" fill="#d95c46"/>
+   ${txt(385,62,'DAYA: PUTAR PEMEGANG','#a33b2b',12,'bold')}${txt(390,sinkerY+34,`${load} kg`,'#53675f',12,'bold')}${txt(235,216,'PANDANGAN HADAPAN','#53675f',11,'bold')}
    `;
  }
  if(kind==='satah'){
@@ -131,32 +137,36 @@ function drawScene(){
    `;
  }
  if(kind==='baji'){
-   const depth=p*0.85, split=Math.min(25,p*0.22), tipY=90+depth*0.95, axeY=22+depth*0.28;
-   s+=`<rect x="150" y="115" width="${150-split}" height="105" fill="#c9b995" stroke="#8b795a" stroke-width="3"/>
-   <rect x="${300+split}" y="115" width="${150-split}" height="105" fill="#c9b995" stroke="#8b795a" stroke-width="3"/>
-   <path d="M300 115 V${tipY}" stroke="#8b795a" stroke-width="2" stroke-dasharray="4 4"/>
-   <g transform="translate(300 ${axeY}) rotate(0)">
-    <rect x="-5" y="-4" width="10" height="83" rx="4" fill="#b98b50" stroke="#805c31" stroke-width="2"/>
-    <path d="M-5 10 L-26 -1 L-26 -32 Q0 -42 26 -32 L26 -1 L5 10 Z" fill="#a9bbc0" stroke="#4e6c74" stroke-width="3"/>
-    <polygon points="-12,10 12,10 0,${Math.max(18,tipY-axeY)}" fill="#a9bbc0" stroke="#4e6c74" stroke-width="3"/>
+   const depth=p*1.15, split=Math.min(48,p*0.43), tipY=Math.min(218,130+depth*0.85), bladeTop=22+depth*0.18;
+   s+=`<path d="M145 110 H278 L300 ${tipY} L278 220 H145 Z" fill="#c9b995" stroke="#8b795a" stroke-width="3"/>
+   <path d="M455 110 H322 L300 ${tipY} L322 220 H455 Z" fill="#c9b995" stroke="#8b795a" stroke-width="3"/>
+   <g transform="translate(300 ${bladeTop})">
+    <path d="M-25 -10 Q0 -25 25 -10 L25 13 L10 22 L-10 22 L-25 13 Z" fill="#a9bbc0" stroke="#4e6c74" stroke-width="3"/>
+    <polygon points="-12,20 12,20 0,${Math.max(25,tipY-bladeTop)}" fill="#a9bbc0" stroke="#4e6c74" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="-4" y="18" width="8" height="35" rx="3" fill="#b98b50" stroke="#805c31" stroke-width="2"/>
    </g>
-   <line data-effort="1" x1="300" y1="6" x2="300" y2="19" stroke="#d95c46" stroke-width="6"/><polygon points="290,14 310,14 300,29" fill="#d95c46"/>
-   ${txt(385,42,'DAYA: HAYUN KAPAK','#a33b2b',12,'bold')}${txt(300,253,'Kapak masuk dan membelah kayu','#53675f',12)}
+   <line data-effort="1" x1="300" y1="5" x2="300" y2="18" stroke="#d95c46" stroke-width="6"/><polygon points="290,14 310,14 300,29" fill="#d95c46"/>
+   ${txt(405,42,'DAYA: HAYUN KAPAK','#a33b2b',12,'bold')}${txt(300,253,'Baji masuk lebih dalam • rekahan berbentuk V','#53675f',11)}
    `;
  }
  if(kind==='skru'){
-   const rot=p*5.4, down=p*0.48;
-   s+=`<rect x="180" y="112" width="240" height="100" rx="6" fill="#c9b995" stroke="#8b795a" stroke-width="3"/>
-   <rect x="260" y="112" width="80" height="100" fill="#a88f66" stroke="#8b795a" stroke-width="2"/>
-   <g transform="translate(0 ${down})">
-    <rect x="255" y="74" width="90" height="20" rx="8" fill="#d95c46" stroke="#963c2d" stroke-width="3"/>
-    <path d="M265 84 H335" stroke="#f8e4d5" stroke-width="3"/>
-    <rect x="286" y="94" width="28" height="77" fill="#a9bbc0" stroke="#4e6c74" stroke-width="2"/>
-    <path d="${Array.from({length:7},(_,i)=>`M280 ${98+i*10} l40 5 l-40 5`).join(' ')}" stroke="#315f83" stroke-width="3" fill="none"/>
-    <polygon points="286,171 314,171 300,190" fill="#a9bbc0" stroke="#4e6c74" stroke-width="2"/>
+   const openAmount=Math.max(0,Math.min(100,p)), capY=45+(100-openAmount)*0.34, rot=(100-openAmount)*3.6;
+   s+=`<path d="M205 110 L215 94 L215 79 Q215 70 228 70 H372 Q385 70 385 79 V94 L395 110 V211 Q395 225 380 225 H220 Q205 225 205 211 Z" fill="#c8e5ec" fill-opacity=".8" stroke="#5b9aaa" stroke-width="3"/>
+   <rect x="257" y="68" width="86" height="50" fill="#d6eef2" stroke="#5b9aaa" stroke-width="2"/>
+   <path d="M258 77 l18 7 l-18 7 l18 7 l-18 7 l18 7 M342 77 l-18 7 l18 7 l-18 7 l18 7 l-18 7" fill="none" stroke="#397d8d" stroke-width="3"/>
+   <g transform="translate(0 ${-openAmount*0.38})">
+    <g transform="translate(300 ${capY}) rotate(${rot})">
+     <path d="M-48 -9 Q-48 -20 -36 -20 H36 Q48 -20 48 -9 V9 H-48 Z" fill="#d95c46" stroke="#963c2d" stroke-width="3"/>
+     <path d="M-42 -3 H42 M-42 4 H42" stroke="#f8d4c8" stroke-width="2"/>
+     <path d="M-35 9 V24 M-25 9 V24 M-15 9 V24 M-5 9 V24 M5 9 V24 M15 9 V24 M25 9 V24 M35 9 V24" stroke="#963c2d" stroke-width="3"/>
+    </g>
    </g>
-   <g transform="translate(300 84) rotate(${rot})"><path d="M-43 -5 Q-50 -28 -27 -33 L-5 -33 L-5 -21 L-25 -21 Q-33 -20 -31 -5 Z" fill="#d95c46" stroke="#963c2d" stroke-width="2"/><path d="M43 5 Q50 28 27 33 L5 33 L5 21 L25 21 Q33 20 31 5 Z" fill="#d95c46" stroke="#963c2d" stroke-width="2"/></g>
-   ${txt(405,60,'DAYA: PUTAR ↻','#a33b2b',12,'bold')}${txt(300,253,'Penutup berpusing turun dan mengunci','#53675f',12)}
+   <rect x="430" y="95" width="112" height="95" rx="8" fill="#f7f1df" stroke="#d1c7b1" stroke-width="2"/>
+   <path d="M448 110 H524 V176 H448 Z" fill="#d6eef2" stroke="#5b9aaa" stroke-width="2"/>
+   <path d="M448 118 l15 7 l-15 7 l15 7 l-15 7 l15 7 l-15 7 M524 118 l-15 7 l15 7 l-15 7 l15 7 l-15 7 l15 7" fill="none" stroke="#397d8d" stroke-width="3"/>
+   <path d="M455 103 H517 V119 H455 Z" fill="#d95c46" stroke="#963c2d" stroke-width="2"/>
+   ${txt(300,36,'PENUTUP BOTOL PLASTIK','#53675f',12,'bold')}${txt(486,205,'KERATAN ULIR','#53675f',10,'bold')}
+   ${txt(300,253,openAmount>85?'Penutup terbuka':(openAmount<15?'Penutup terkunci':'Ulir sedang bergerak'),'#53675f',12)}
    `;
  }
  return s+'</svg>';
@@ -167,29 +177,29 @@ function stopHold(){
  if(active){
    active=false;
    const status=document.getElementById('simStatus');
-   if(status)status.textContent='Daya dilepaskan. Gerakan berhenti pada kedudukan semasa.';
+   if(status)status.textContent=kind==='skru'?'Daya dilepaskan. Penutup berhenti pada kedudukan semasa.':'Daya dilepaskan. Gerakan berhenti pada kedudukan semasa.';
    const obs=document.getElementById('simObservation');
    if(obs)obs.textContent='Perhatikan kedudukan mesin selepas daya dilepaskan. Tekan dan tahan semula untuk meneruskan.';
  }
 }
-function startHold(e){
+function startHold(e,direction=1){
  if(e)e.preventDefault();
  if(active)return;
  
  active=true;
- if(kind==='skru')screwLocked=true;
+ if(kind==='skru')screwDirection=direction;
  const status=document.getElementById('simStatus');
  status.textContent='Daya dikenakan. Terus tekan dan tahan untuk meneruskan gerakan.';
  // Same rule for every machine: more force speeds the movement; more load slows it.
  const burden=Number(vals.load||40);
- const effort=Number(vals.force||5);
+ const effort=Number(vals.force||vals.effort||5);
  const increment=(0.22+effort*0.09)/(1+burden/45);
  holdTimer=setInterval(()=>{
-   progress=Math.min(100,progress+increment);
+   progress=kind==='skru'?Math.max(0,Math.min(100,progress+increment*screwDirection)):Math.min(100,progress+increment);
    drawUpdate();
-   if(progress>=100){completedMachines.add(kind);updateSummary();
+   if((kind==='skru'&&(progress>=100||progress<=0))||(kind!=='skru'&&progress>=100)){completedMachines.add(kind);updateSummary();
      clearInterval(holdTimer);holdTimer=null;active=false;
-     status.textContent='Pergerakan selesai. Tekan Tetapkan semula untuk mengulang simulasi.';
+     status.textContent=kind==='skru'?(progress>=100?'Penutup terbuka. Tekan KUNCI untuk menutup semula.':'Penutup terkunci. Tekan BUKA untuk membuka semula.'):'Pergerakan selesai. Tekan Tetapkan semula untuk mengulang simulasi.';
      const msgs={
        tuas:'Satu budak turun apabila daya ditekan; budak di hujung bertentangan naik. Fulkrum menjadi titik sokongan jongkang-jongket.',
        takal:'Tali ditarik dan bongkah kren naik. Takal menukar arah daya supaya tarikan ke bawah dapat mengangkat beban.',

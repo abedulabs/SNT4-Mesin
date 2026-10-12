@@ -108,3 +108,11 @@ VERSI 14 — REKA SEMULA SEMUA SIMULATOR
 - Butang TEKAN & TAHAN DAYA seragam. Daya lebih tinggi meningkatkan kelajuan simulasi; beban lebih tinggi memperlahankannya.
 - Lepaskan butang untuk menghentikan gerakan pada kedudukan semasa; Tetapkan semula untuk mengulang.
 - Markah dikekalkan: kuiz 10, simulator 12, pemerhatian 28, jumlah 50.
+
+
+VERSI 15 — PENAMBAHBAIKAN BERDASARKAN MAKLUM BALAS
+1. Tuas: slider jarak fulkrum (cm), daya dikenakan (N) dan beban (kg).
+2. Roda dan gandar: pandangan hadapan dengan pemegang pengayuh; tali menggulung dan batu ladung naik. Caption reel pancing dibuang.
+3. Baji: rekahan kayu berbentuk V mengikut hujung runcing baji/kapak.
+4. Skru: botol plastik pandangan sisi dengan keratan rentas ulir. BUKA memutarkan penutup lawan arah jam dan mengangkatnya; KUNCI memutarkan ikut arah jam dan menurunkannya.
+Markah kekal 50: Kuiz 10, Simulator 12, Pemerhatian 28.
