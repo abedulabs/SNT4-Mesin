@@ -164,30 +164,34 @@ function draw(){
   <path d="M302 205 Q388 206 420 248 T470 293 L470 ${fishY}" fill="none" stroke="#c79b5e" stroke-width="6"/><g transform="translate(470 ${fishY})" filter="url(#shadow)"><path d="M-30 0 Q-12 -24 12 -8 Q28 -1 13 10 Q-9 25 -30 0Z" fill="#70c6dd" stroke="#317e9a" stroke-width="4"/><path d="M-28 0 L-43 -14 L-43 14Z" fill="#4aa2bc" stroke="#317e9a" stroke-width="3"/><circle cx="8" cy="-3" r="3.5" fill="#173b4a"/><path d="M0 12 q-3 12 7 14" fill="none" stroke="#6c7376" stroke-width="3"/></g><text x="490" y="110" fill="#9e372a" font-size="18" font-weight="900">PUTAR ↻</text><text x="490" y="${fishY+45}" fill="#214f31" font-size="16" font-weight="900">${load} kg</text><text x="270" y="375" fill="#214f31" font-size="16" font-weight="800" text-anchor="middle">RODA MEMUTAR GANDAR</text>`;
  }
  if(current==='baji'){
-  // Kapak bergerak ke bawah. Rekahan hanya muncul selepas mata kapak menyentuh kayu.
-  // Semakin dalam mata kapak, semakin lebar rekahan di permukaan; hujung rekahan kekal di mata kapak.
-  const bladeTip=190+p*1.25;
+  // Pandangan sisi: kepala kapak lebar, mata berbentuk baji dan kayu terbelah dalam bentuk V.
+  // Rekahan bermula hanya apabila mata menyentuh permukaan dan tertutup semula apabila kapak ditarik.
   const contactY=235;
+  const bladeTip=190+p*1.25;
   const depth=Math.max(0,Math.min(102,bladeTip-contactY));
-  const splitWidth=depth>0?Math.min(48,depth*.48):0;
+  const splitWidth=depth>0?Math.min(49,depth*.48):0;
   const splitTip=contactY+depth;
   const splitLabel=depth<=0?'KAYU BELUM TERBELAH':depth>=100?'KAPAK MASUK PALING DALAM':'REKAHAN V SEMAKIN TERBUKA';
+  // Dua sisi kayu terbuka dari permukaan ke hujung mata kapak sahaja.
   s+=`<g filter="url(#shadow)">
-    <!-- Dua bahagian kayu kekal utuh di bawah hujung rekahan -->
-    <path d="M130 235 H${360-splitWidth} L360 ${splitTip} L360 350 H130 Z" fill="#c5a978" stroke="#806947" stroke-width="5" stroke-linejoin="round"/>
-    <path d="M${360+splitWidth} 235 H590 V350 H360 L360 ${splitTip} Z" fill="#c5a978" stroke="#806947" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M130 235 H${360-splitWidth} L360 ${splitTip} V350 H130 Z" fill="#c5a978" stroke="#806947" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M${360+splitWidth} 235 H590 V350 H360 V${splitTip} Z" fill="#c5a978" stroke="#806947" stroke-width="5" stroke-linejoin="round"/>
     <path d="M130 235 H${360-splitWidth} L360 ${splitTip}" fill="none" stroke="#e3c99a" stroke-width="3"/>
     <path d="M${360+splitWidth} 235 H590" fill="none" stroke="#e3c99a" stroke-width="3"/>
   </g>
-  <!-- Kapak dari pandangan sisi; hujung bilah tepat pada hujung rekahan -->
-  <g filter="url(#shadow)">
-    <path d="M${360-25} ${bladeTip-130} Q${360-32} ${bladeTip-153} 360 ${bladeTip-160} Q${360+32} ${bladeTip-153} ${360+25} ${bladeTip-130} L${360+15} ${bladeTip-112} H${360-15} Z" fill="#91b9c5" stroke="#4c6e79" stroke-width="5"/>
-    <path d="M${360-14} ${bladeTip-113} H${360+14} L360 ${bladeTip}" fill="#d8edf1" stroke="#4c6e79" stroke-width="5" stroke-linejoin="round"/>
-    <path d="M${360-8} ${bladeTip-114} H${360+8} V${bladeTip-47} Q360 ${bladeTip-40} ${360-8} ${bladeTip-47}Z" fill="#b9874c" stroke="#805630" stroke-width="3"/>
-    <path d="M360 ${bladeTip-156} V${bladeTip-119}" stroke="#d94d3d" stroke-width="6"/>
+  <!-- Pemegang kayu kapak kelihatan di belakang kepala kapak -->
+  <g transform="rotate(-8 360 120)" filter="url(#shadow)">
+    <path d="M350 75 Q360 68 370 75 L378 197 Q360 211 342 197Z" fill="#b9874c" stroke="#805630" stroke-width="5"/>
+    <path d="M356 83 L362 190" stroke="#e2bf80" stroke-width="4" opacity=".8"/>
   </g>
-  <path d="M360 26 V45" stroke="#d94d3d" stroke-width="8"/><path d="M344 40 L360 62 L376 40Z" fill="#d94d3d"/>
-  <text x="405" y="48" fill="#9e372a" font-size="18" font-weight="900">DAYA: HAYUN KAPAK ↓</text>
+  <!-- Kepala kapak lebar di atas kayu; bilah baji meruncing ke titik yang masuk ke rekahan -->
+  <g filter="url(#shadow)">
+    <path d="M300 64 Q287 55 290 40 L303 25 L417 25 L430 40 Q433 55 420 64 L395 78 L${360+Math.min(15,depth*.12)} ${bladeTip-6} L360 ${bladeTip} L${360-Math.min(15,depth*.12)} ${bladeTip-6} L325 78 Z" fill="#687b83" stroke="#354b53" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M325 78 L360 ${bladeTip} L395 78 L382 84 L360 ${bladeTip-2} L338 84 Z" fill="#dce8e8" stroke="#aabfc2" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M360 28 V54" stroke="#d7e2e3" stroke-width="4"/>
+  </g>
+  <path d="M360 8 V23" stroke="#d94d3d" stroke-width="8"/><path d="M344 20 L360 43 L376 20Z" fill="#d94d3d"/>
+  <text x="442" y="45" fill="#9e372a" font-size="18" font-weight="900">DAYA: HAYUN KAPAK ↓</text>
   <text x="360" y="390" fill="#214f31" font-size="16" font-weight="800" text-anchor="middle">${splitLabel}</text>`;
  }
  if(current==='satah'){
