@@ -90,7 +90,7 @@ const machines=[
 {id:'tuas',name:'Tuas',title:'Tuas — jongkang-jongket',desc:'Tekan dan tahan DAYA di sebelah kanan. Hujung daya turun dan hujung bertentangan naik. Fulkrum ialah titik sokongan.',caption:'Tuas berpusing pada fulkrum.',controls:[['ful','Kedudukan fulkrum (cm)',20,80,50,5,' cm'],['load','Beban (kg)',10,100,40,10,' kg'],['force','Daya (N)',10,100,50,10,' N'],['distance','Jarak daya (cm)',10,100,50,10,' cm']],button:'👇 TEKAN & TAHAN DAYA'},
 {id:'takal',name:'Takal',title:'Takal — kren mengangkat bongkah',desc:'Tekan dan tahan TARIK. Tarik tali ke bawah untuk menaikkan bongkah. Takal menukar arah daya.',caption:'Tarik tali ke bawah, beban bergerak ke atas.',controls:[['load','Beban bongkah (kg)',10,100,40,10,' kg'],['force','Daya tarikan (N)',10,100,50,10,' N']],button:'👇 TEKAN & TAHAN TARIK'},
 {id:'roda',name:'Roda dan gandar',title:'Roda dan gandar — penggulung tali',desc:'Tekan dan tahan PUTAR. Pemegang memutarkan roda dan gandar, tali digulung dan batu ladung naik.',caption:'Putaran roda memutarkan gandar untuk menggulung tali.',controls:[['load','Beban batu ladung (kg)',1,20,5,1,' kg'],['force','Daya putaran (N)',10,100,50,10,' N']],button:'↻ TEKAN & TAHAN PUTAR'},
-{id:'baji',name:'Baji',title:'Baji — kapak membelah kayu',desc:'Tekan dan tahan KETUK. Bucu tajam kapak masuk ke kayu dan menolak bahagian kayu menjauhi satu sama lain.',caption:'Rekahan berbentuk V terbuka pada bahagian atas kayu.',controls:[['load','Rintangan kayu (kg)',10,100,40,10,' kg'],['force','Daya ketukan (N)',10,100,50,10,' N']],button:'🔨 TEKAN & TAHAN KETUK'},
+{id:'baji',name:'Baji',title:'Baji — kapak membelah kayu',desc:'Tekan dan tahan KETUK untuk menurunkan mata kapak. Kayu mula terbelah dalam bentuk V apabila mata kapak menyentuh kayu; semakin dalam kapak masuk, semakin lebar rekahan di bahagian atas. Apabila daya dilepaskan dan kapak ditarik semula, rekahan kayu tertutup semula.',caption:'Rekahan V hanya terbuka dari permukaan hingga ke mata kapak; apabila kapak ditarik keluar, rekahan tertutup semula.',controls:[['load','Rintangan kayu (kg)',10,100,40,10,' kg'],['force','Daya ketukan (N)',10,100,50,10,' N']],button:'🔨 TEKAN & TAHAN KETUK'},
 {id:'satah',name:'Satah condong',title:'Satah condong — kereta menaiki cerun',desc:'Tekan dan tahan TOLAK. Kereta bergerak perlahan-lahan menaiki cerun. Cerun lebih landai membantu menaikkan beban.',caption:'Satah condong ialah permukaan cerun yang membantu menaikkan beban.',controls:[['angle','Ketinggian cerun (%)',15,45,30,5,' %'],['load','Beban kereta (kg)',10,100,40,10,' kg'],['force','Daya tolakan (N)',10,100,50,10,' N']],button:'👆 TEKAN & TAHAN TOLAK'},
 {id:'skru',name:'Skru',title:'Skru — penutup botol berulir',desc:'Tekan dan tahan BUKA untuk memutarkan penutup lawan arah jam. Ulir pada penutup bergerak sepanjang ulir pada leher botol lalu penutup naik dan terpisah. Tekan dan tahan KUNCI untuk memutarkan penutup ikut arah jam, turun mengikut ulir dan mengetat pada botol.',caption:'Keratan sisi menunjukkan ulir penutup mencengkam ulir leher botol: putaran lawan jam menaikkan penutup, putaran ikut jam menurunkannya dan mengetatkan penutup.',controls:[['turns','Bilangan putaran',1,10,5,1,' pusingan']],button:'↻ BUKA / KUNCI'}
 ];
@@ -126,7 +126,7 @@ function renderMachine(){
 function bindHold(el,dir){el.addEventListener('pointerdown',e=>{e.preventDefault();start(dir)});['pointerup','pointercancel','pointerleave'].forEach(ev=>el.addEventListener(ev,stop))}
 function start(dir){if(active)return;active=true;const burden=Number(values.load||40),force=Number(values.force||50);const rate=Math.max(.10,(.4+force/120)/(1+burden/100));$('status').textContent='Daya dikenakan… terus tahan untuk meneruskan gerakan.';timer=setInterval(()=>{progress=current==='skru'?Math.max(0,Math.min(100,progress+rate*dir)):Math.min(100,progress+rate);draw();if(current==='skru'?(progress===0||progress===100):progress>=100){stop();completed.add(current);$('status').textContent=current==='skru'?(progress===100?'Penutup terbuka.':'Penutup dikunci.'):'Gerakan selesai! Simulator ini direkodkan 2/2 markah.';$('tip').textContent=observation();updateScores()}},40)}
 function stop(){if(timer){clearInterval(timer);timer=null}active=false}
-function observation(){return ({tuas:'Fulkrum ialah titik sokongan. Apabila hujung daya turun, hujung bertentangan naik.',takal:'Tarikan ke bawah menaikkan beban dan mengubah arah daya.',roda:'Roda dan gandar berputar bersama; tali digulung lalu batu ladung naik.',baji:'Bucu tajam membelah kayu dan menghasilkan rekahan berbentuk V.',satah:'Kereta bergerak menaiki cerun; kecerunan mempengaruhi usaha yang diperlukan.',skru:'Putaran penutup bergerak mengikut ulir: lawan jam membuka dan ikut jam mengunci.'})[current]}
+function observation(){return ({tuas:'Fulkrum ialah titik sokongan. Apabila hujung daya turun, hujung bertentangan naik.',takal:'Tarikan ke bawah menaikkan beban dan mengubah arah daya.',roda:'Roda dan gandar berputar bersama; tali digulung lalu batu ladung naik.',baji:'Mata kapak membentuk rekahan V yang semakin dalam ketika ditekan; rekahan tertutup semula apabila kapak ditarik keluar.',satah:'Kereta bergerak menaiki cerun; kecerunan mempengaruhi usaha yang diperlukan.',skru:'Putaran penutup bergerak mengikut ulir: lawan jam membuka dan ikut jam mengunci.'})[current]}
 function draw(){
  const p=Math.max(0,Math.min(100,progress)),v=values,load=Number(v.load||40);
  let s=`<svg viewBox="0 0 720 440" role="img" aria-label="${machine().title}">
@@ -164,9 +164,31 @@ function draw(){
   <path d="M302 205 Q388 206 420 248 T470 293 L470 ${fishY}" fill="none" stroke="#c79b5e" stroke-width="6"/><g transform="translate(470 ${fishY})" filter="url(#shadow)"><path d="M-30 0 Q-12 -24 12 -8 Q28 -1 13 10 Q-9 25 -30 0Z" fill="#70c6dd" stroke="#317e9a" stroke-width="4"/><path d="M-28 0 L-43 -14 L-43 14Z" fill="#4aa2bc" stroke="#317e9a" stroke-width="3"/><circle cx="8" cy="-3" r="3.5" fill="#173b4a"/><path d="M0 12 q-3 12 7 14" fill="none" stroke="#6c7376" stroke-width="3"/></g><text x="490" y="110" fill="#9e372a" font-size="18" font-weight="900">PUTAR ↻</text><text x="490" y="${fishY+45}" fill="#214f31" font-size="16" font-weight="900">${load} kg</text><text x="270" y="375" fill="#214f31" font-size="16" font-weight="800" text-anchor="middle">RODA MEMUTAR GANDAR</text>`;
  }
  if(current==='baji'){
-  let tip=130+p*.95,top=65;
-  s+=`<g filter="url(#shadow)"><path d="M130 235 L270 235 L300 ${tip} L300 350 L130 350Z" fill="#a77a4b" stroke="#744c2d" stroke-width="5"/><path d="M130 235 L270 235 L300 ${tip} L275 235Z" fill="#d4a56a"/><path d="M300 ${tip} L330 235 L590 235 L590 350 L300 350Z" fill="#c49761" stroke="#744c2d" stroke-width="5"/><path d="M330 235 L590 235 L590 350 L330 350Z" fill="#b88a54"/><path d="M270 235 L300 ${tip} L330 235" fill="none" stroke="#684326" stroke-width="5"/><path d="M300 ${tip} L300 350" stroke="#6b4529" stroke-width="3" stroke-dasharray="6 7"/></g>
-  <g transform="translate(300 ${top+p*.45}) rotate(${p*.05})" filter="url(#shadow)"><path d="M-25 5 Q-32 -20 0 -28 Q32 -20 25 5 L13 20 H-13Z" fill="url(#metal)" stroke="#4c6e79" stroke-width="5"/><path d="M-14 14 L14 14 L0 ${Math.max(25,tip-top-p*.45)}Z" fill="#c8e2e8" stroke="#4c6e79" stroke-width="5"/><rect x="-6" y="13" width="12" height="42" rx="5" fill="url(#wood)" stroke="#805630" stroke-width="3"/></g><path d="M300 32 V52" stroke="#d94d3d" stroke-width="8"/><path d="M284 46 L300 67 L316 46Z" fill="#d94d3d"/><text x="350" y="52" fill="#9e372a" font-size="18" font-weight="900">KETUK KAPAK ↓</text><text x="360" y="390" fill="#214f31" font-size="16" font-weight="800" text-anchor="middle">REKAHAN V SEMAKIN TERBUKA</text>`;
+  // Kapak bergerak ke bawah. Rekahan hanya muncul selepas mata kapak menyentuh kayu.
+  // Semakin dalam mata kapak, semakin lebar rekahan di permukaan; hujung rekahan kekal di mata kapak.
+  const bladeTip=190+p*1.25;
+  const contactY=235;
+  const depth=Math.max(0,Math.min(102,bladeTip-contactY));
+  const splitWidth=depth>0?Math.min(48,depth*.48):0;
+  const splitTip=contactY+depth;
+  const splitLabel=depth<=0?'KAYU BELUM TERBELAH':depth>=100?'KAPAK MASUK PALING DALAM':'REKAHAN V SEMAKIN TERBUKA';
+  s+=`<g filter="url(#shadow)">
+    <!-- Dua bahagian kayu kekal utuh di bawah hujung rekahan -->
+    <path d="M130 235 H${360-splitWidth} L360 ${splitTip} L360 350 H130 Z" fill="#c5a978" stroke="#806947" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M${360+splitWidth} 235 H590 V350 H360 L360 ${splitTip} Z" fill="#c5a978" stroke="#806947" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M130 235 H${360-splitWidth} L360 ${splitTip}" fill="none" stroke="#e3c99a" stroke-width="3"/>
+    <path d="M${360+splitWidth} 235 H590" fill="none" stroke="#e3c99a" stroke-width="3"/>
+  </g>
+  <!-- Kapak dari pandangan sisi; hujung bilah tepat pada hujung rekahan -->
+  <g filter="url(#shadow)">
+    <path d="M${360-25} ${bladeTip-130} Q${360-32} ${bladeTip-153} 360 ${bladeTip-160} Q${360+32} ${bladeTip-153} ${360+25} ${bladeTip-130} L${360+15} ${bladeTip-112} H${360-15} Z" fill="#91b9c5" stroke="#4c6e79" stroke-width="5"/>
+    <path d="M${360-14} ${bladeTip-113} H${360+14} L360 ${bladeTip}" fill="#d8edf1" stroke="#4c6e79" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M${360-8} ${bladeTip-114} H${360+8} V${bladeTip-47} Q360 ${bladeTip-40} ${360-8} ${bladeTip-47}Z" fill="#b9874c" stroke="#805630" stroke-width="3"/>
+    <path d="M360 ${bladeTip-156} V${bladeTip-119}" stroke="#d94d3d" stroke-width="6"/>
+  </g>
+  <path d="M360 26 V45" stroke="#d94d3d" stroke-width="8"/><path d="M344 40 L360 62 L376 40Z" fill="#d94d3d"/>
+  <text x="405" y="48" fill="#9e372a" font-size="18" font-weight="900">DAYA: HAYUN KAPAK ↓</text>
+  <text x="360" y="390" fill="#214f31" font-size="16" font-weight="800" text-anchor="middle">${splitLabel}</text>`;
  }
  if(current==='satah'){
   let angle=Number(v.angle),x=Math.min(470,95+p*3.5),y=340-(x-80)*Math.tan(angle*Math.PI/180)*.53;

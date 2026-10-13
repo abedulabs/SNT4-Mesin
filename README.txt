@@ -11,3 +11,5 @@ UPLOAD GITHUB PAGES:
 3. Commit changes dan buka semula laman GitHub Pages.
 
 Kemas kini simulator skru: keratan sisi botol plastik, ulir pada leher botol dan ulir dalaman penutup ditunjukkan. BUKA memutar lawan jam sambil penutup naik; KUNCI memutar ikut jam sambil penutup turun dan mengetat. Semua lima simulator lain dikekalkan.
+
+Kemas kini baji: rekahan berbentuk V bermula apabila mata kapak menyentuh kayu, terbuka semakin dalam ketika kapak ditekan, dan tertutup semula apabila kapak ditarik keluar.
